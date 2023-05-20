@@ -1,11 +1,22 @@
 import { NextFunction, Request, Response } from "express";
-import { getAllProductsFromDB } from "./product.service";
+import { getAllProductsFromDB, getProductByIdFromDB } from "./product.service";
+import { sendApiResponse } from "../../utils/responseHandler";
 
 export const getAllProducts = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-    const result = await getAllProductsFromDB();
-    res.status(200).json(result);
+  const products = await getAllProductsFromDB();
+  sendApiResponse(res, 200, true, products);
+};
+
+export const getProductById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
+  const product = await getProductByIdFromDB(id);
+  sendApiResponse(res, 200, true, product);
 };

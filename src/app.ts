@@ -16,9 +16,14 @@ dbConnect();
 // we will import routers
 import productRouter from "./app/modules/product/product.router";
 
+//ejs file set
+app.set('view engine', "ejs")
+
 // here will be default routers
-app.use("/api/v1/products", productRouter);
+app.get("/", (req, res) => {
+    res.render("index");
+})
 
 // custom route path
-
+app.use("/api/v1/products", productRouter);
 export {app};
