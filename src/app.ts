@@ -15,6 +15,8 @@ dbConnect();
 
 // we will import routers
 
-//
+// here will be default routers
+
+// custom route path
 
 export {app};
