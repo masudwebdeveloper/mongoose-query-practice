@@ -14,8 +14,10 @@ app.use(express.urlencoded({ extended: false }));
 dbConnect();
 
 // we will import routers
+import productRouter from "./app/modules/product/product.router";
 
 // here will be default routers
+app.use("/api/v1/products", productRouter);
 
 // custom route path
 
